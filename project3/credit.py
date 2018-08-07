@@ -3,6 +3,7 @@ import numpy as np
 
 import matplotlib
 matplotlib.use('Agg')
+import pylab
 
 from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
@@ -27,26 +28,26 @@ param_tree = {'max_depth':[10,15,20,None], 'max_features':[10,15,20,None]}
 tree_grid = GridSearchCV(tree, param_tree, cv=5, scoring='f1')
 
 tree_grid.fit(X,y)
-tree_ypred = grid_tree.predict(X_test)
+tree_ypred = tree_grid.predict(X_test)
 
 print('best score: ',tree_grid.best_score_)
 print(tree_grid.best_params_)
 
 print('precision:',precision_score(y_test, tree_ypred),'/n','recall:',recall_score(y_test, tree_ypred),'\n','accuracy:',accuracy_score(y_test,tree_ypred))
 
-feat_import = tree_grid.feature_importances_
-print('features:',feat_import,'/n','max_index:',feat_import.index(max(feat_import)))
+#feat_import = tree_grid.feature_importances_
+#print('features:',feat_import,'/n','max_index:',feat_import.index(max(feat_import)))
 
 
 tree_yproba = tree_grid.predict_proba(X_test)[:,1]
 fpr_tree, tpr_tree, _ = roc_curve(y_test, tree_yproba)
 
-cnf_tree = confusion_matrix(y_test, ypred_tree, labels=None)
-plt.imshow(cnf_tree, interpolation='nearest', cmap=plt.cm.Blues)
-plt.colorbar()
-plt.tight_layout()
+cnf_tree = confusion_matrix(y_test, tree_ypred, labels=None)
+pylab.imshow(cnf_tree, interpolation='nearest', cmap=pylab.cm.Blues)
+pylab.colorbar()
+pylab.tight_layout()
 tick_marks = np.arange(len(tree_grid.classes_))
-plt.yticks(tick_marks,tree_grid.classes_,rotation=0)
-plt.xticks(tick_marks,tree_grid.classes_,rotation=0)
+pylab.yticks(tick_marks,tree_grid.classes_,rotation=0)
+pylab.xticks(tick_marks,tree_grid.classes_,rotation=0)
 print(cnf_tree)
-plt.savefig('tree_cnf.png')
+pylab.savefig('tree_cnf.png')
