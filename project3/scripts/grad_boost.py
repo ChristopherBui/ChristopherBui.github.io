@@ -92,4 +92,4 @@ pylab.savefig('gbroctuned.png')
 threshold = 0.3
 pred_proba = grad_grid.predict_proba(X_test)
 pred = (pred_proba[:,1]>=threshold).astype('int')
-print('p2:',precision_score(y_test, pred),'\n','re2:',recall_score(y_test, pred),'\n','ac2:',accuracy_score(y_test, pred),'\n','auc2:',auc(fpr_grad,tpr_grad))
+print('f1-2:',f1_score(y_test,pred),'\n','p2:',precision_score(y_test, pred),'\n','re2:',recall_score(y_test, pred),'\n','ac2:',accuracy_score(y_test, pred),'\n','auc2:',auc(fpr_grad,tpr_grad))
