@@ -88,3 +88,8 @@ pylab.ylabel('TPR',rotation=0, labelpad=15)
 pylab.legend(loc='upper left')
 pylab.title('Gradient Boosting Tuned')
 pylab.savefig('gbroctuned.png')
+
+threshold = 0.3
+pred_proba = grad_grid.predict_proba(X_test)
+pred = (pred_proba[:,1]>=threshold).astype('int')
+print('p2:',precision_score(y_test, pred),'\n','re2:',recall_score(y_test, pred),'\n','ac2:',accuracy_score(y_test, pred),'\n','auc2:',auc(fpr_grad,tpr_grad))
