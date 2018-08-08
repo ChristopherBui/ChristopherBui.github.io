@@ -55,7 +55,7 @@ def plot_confusion_matrix(cm, classes,
 
 # GridSearchCV For Gradient Boosting
 grad = GradientBoostingClassifier()
-grad_param = {'n_estimators':[250], 'max_depth':[5,12], 'max_features':[None]}
+grad_param = {'n_estimators':[250], 'max_depth':[3], 'max_features':[18,None]}
 
 grad_grid = GridSearchCV(grad, param_grid=grad_param, cv=5, scoring='f1')
 
