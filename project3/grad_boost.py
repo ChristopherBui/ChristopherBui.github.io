@@ -66,7 +66,9 @@ grad_ypred = grad_grid.predict(X_test)
 grad_yproba = grad_grid.predict_proba(X_test)[:,1]
 fpr_grad, tpr_grad, _ = roc_curve(y_test, grad_yproba)
 
-bfi = grad_grid.best_estimator_.feature_importances_.index(max(grad_grid.best_estimator_.feature_importances_))
+flist = grad_grid.best_estimator_.feature_importances_
+bfi = np.where(flist==max(flist))
+print(flist)
 print('bfi:',bfi)
 
 print('best score: ',grad_grid.best_score_)
