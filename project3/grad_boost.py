@@ -82,7 +82,7 @@ plot_confusion_matrix(cnf_grad, title='Gradient Boosting CM', classes=grad_grid.
 pylab.savefig('cnf_grad.png')
 
 pylab.figure()
-pylab.plot(fpr_gb, tpr_gb, label='gradient boosting')
+pylab.plot(fpr_grad, tpr_grad, label='gradient boosting')
 pylab.xlabel('FPR', labelpad=10)
 pylab.ylabel('TPR',rotation=0, labelpad=15)
 pylab.legend(loc='upper left')
