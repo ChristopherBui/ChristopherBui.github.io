@@ -86,12 +86,12 @@ print('AUC SCORES',
 'GRAD:',grad_auc)
 
 
-pylab.figure(figsize=(10,10))
+pylab.figure(figsize=(12,10))
 pylab.plot(fpr_knn, tpr_knn, label='knn')
 #pylab.plot(fpr_svm, tpr_svm, label='svm-lin')
 pylab.plot(fpr_tree, tpr_tree, label='decision tree')
 pylab.plot(fpr_rf, tpr_rf, label='random forest')
-pylab.plot(fpr_gb, tpr_gb, label='random forest')
+pylab.plot(fpr_gb, tpr_gb, label='gradient boosting')
 pylab.plot([0,1],[0,1], linestyle='dashed')
 pylab.xlabel('FPR', labelpad=10)
 pylab.ylabel('TPR',rotation=0, labelpad=15)
