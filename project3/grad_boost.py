@@ -80,3 +80,11 @@ print('precision:',precision_score(y_test, grad_ypred),'\n','recall:',recall_sco
 cnf_grad = confusion_matrix(y_test, grad_ypred, labels=None)
 plot_confusion_matrix(cnf_grad, title='Gradient Boosting CM', classes=grad_grid.classes_)
 pylab.savefig('cnf_grad.png')
+
+pylab.figure()
+pylab.plot(fpr_gb, tpr_gb, label='gradient boosting')
+pylab.xlabel('FPR', labelpad=10)
+pylab.ylabel('TPR',rotation=0, labelpad=15)
+pylab.legend(loc='upper left')
+pylab.title('Gradient Boosting Tuned')
+pylab.savefig('gbroctuned.png')
