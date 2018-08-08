@@ -70,7 +70,7 @@ fpr_grad, tpr_grad, _ = roc_curve(y_test, grad_yproba)
 print('best score: ',grad_grid.best_score_)
 print(grad_grid.best_params_)
 
-print('precision:',precision_score(y_test, grad_ypred),'\n','recall:',recall_score(y_test, tree_ypred),'\n','accuracy:',accuracy_score(y_test,tree_ypred),'\n','auc:',auc(fpr_grad,tpr_grad))
+print('precision:',precision_score(y_test, grad_ypred),'\n','recall:',recall_score(y_test, grad_ypred),'\n','accuracy:',accuracy_score(y_test,grad_ypred),'\n','auc:',auc(fpr_grad,tpr_grad))
 
 
 cnf_grad = confusion_matrix(y_test, grad_ypred, labels=None)
