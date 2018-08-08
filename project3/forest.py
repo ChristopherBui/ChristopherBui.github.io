@@ -8,6 +8,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 from sklearn.metrics import roc_curve, auc, confusion_matrix, classification_report, precision_score, recall_score, f1_score, accuracy_score
+import itertools
 
 # Import Data
 df = pd.DataFrame.from_csv('credit_dollars.csv')
@@ -69,3 +70,8 @@ print('best score: ',rf_grid.best_score_)
 print(rf_grid.best_params_)
 
 print('precision:',precision_score(y_test, rf_ypred),'\n','recall:',recall_score(y_test, rf_ypred),'\n','accuracy:',accuracy_score(y_test,rf_ypred),'\n','auc:',auc(fpr_rf,tpr_rf))
+
+
+cnf_rf = confusion_matrix(y_test, rf_ypred, labels=None)
+plot_confusion_matrix(cnf_rf, title='Random Forest CM', classes=rf_grid.classes_)
+pylab.savefig('cnf_rf.png')

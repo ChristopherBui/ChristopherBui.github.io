@@ -8,6 +8,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 from sklearn.metrics import roc_curve, auc, confusion_matrix, classification_report, precision_score, recall_score, f1_score, accuracy_score
+import itertools
 
 # Import Data
 df = pd.DataFrame.from_csv('credit_dollars.csv')
@@ -56,7 +57,7 @@ def plot_confusion_matrix(cm, classes,
 grad = GradientBoostingClassifier()
 grad_param = {'n_estimators':[100,200,300], 'max_depth':[5,10,15,None], 'max_features':[10,15,17,None]}
 
-grad_grid = GridSearchCV(boost, param_grid=grad_param, cv=5, scoring='f1')
+grad_grid = GridSearchCV(grad, param_grid=grad_param, cv=5, scoring='f1')
 
 grad_grid.fit(X,y)
 grad_ypred = grad_grid.predict(X_test)
@@ -69,9 +70,9 @@ fpr_grad, tpr_grad, _ = roc_curve(y_test, grad_yproba)
 print('best score: ',grad_grid.best_score_)
 print(grad_grid.best_params_)
 
-print('precision:',precision_score(y_test, grad_ypred),'\n','recall:',recall_score(y_test, tree_ypred),'\n','accuracy:',accuracy_score(y_test,tree_ypred),'\n','auc:',auc(fpr_grid,tpr_grid))
+print('precision:',precision_score(y_test, grad_ypred),'\n','recall:',recall_score(y_test, tree_ypred),'\n','accuracy:',accuracy_score(y_test,tree_ypred),'\n','auc:',auc(fpr_grad,tpr_grad))
 
 
 cnf_grad = confusion_matrix(y_test, grad_ypred, labels=None)
-plot_confusion_matrix(grad_tree, title='Gradient Boosting CM', classes=grad_grid.classes_)
+plot_confusion_matrix(cnf_grad, title='Gradient Boosting CM', classes=grad_grid.classes_)
 pylab.savefig('cnf_grad.png')
