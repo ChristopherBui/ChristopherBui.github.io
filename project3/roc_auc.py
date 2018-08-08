@@ -18,22 +18,22 @@ y = df.iloc[:,-1]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=24)
 
 # KNN
-knn = KNeighborsClassifier(n_neighbors=5)
-knn.fit(X_train, y_train)
-knn_ypred = knn.predict(X_test)
-knn_proba = knn.predict_proba(X_test)[:,1]
-fpr_knn, tpr_knn, _ = roc_curve(y_test, knn_proba)
-knn_auc = auc(fpr_knn, tpr_knn)
-knn_f1 = f1_score(y_test, knn_ypred)
+#knn = KNeighborsClassifier(n_neighbors=5)
+#knn.fit(X_train, y_train)
+#knn_ypred = knn.predict(X_test)
+#knn_proba = knn.predict_proba(X_test)[:,1]
+#fpr_knn, tpr_knn, _ = roc_curve(y_test, knn_proba)
+#knn_auc = auc(fpr_knn, tpr_knn)
+#knn_f1 = f1_score(y_test, knn_ypred)
 
 # SVM
-#vector = svm.SVC(kernel='linear', C=0.5)
-#vector.fit(X_train, y_train)
-#vector_ypred = vector.predict(X_test)
-#vector_proba = vector.predict_proba(X_test)[:,1]
-#fpr_svm, tpr_svm, _ = roc_curve(y_test, vector_proba)
-#svm_auc = auc(fpr_svm, tpr_svm)
-#svm_f1 = f1_score(y_test, vector_ypred)
+vector = svm.SVC(kernel='linear', C=0.5)
+vector.fit(X_train, y_train)
+vector_ypred = vector.predict(X_test)
+vector_proba = vector.predict_proba(X_test)[:,1]
+fpr_svm, tpr_svm, _ = roc_curve(y_test, vector_proba)
+svm_auc = auc(fpr_svm, tpr_svm)
+svm_f1 = f1_score(y_test, vector_ypred)
 
 
 # Decision Tree
