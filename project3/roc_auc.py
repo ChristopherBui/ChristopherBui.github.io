@@ -27,13 +27,13 @@ knn_auc = auc(fpr_knn, tpr_knn)
 knn_f1 = f1_score(y_test, knn_ypred)
 
 # SVM
-vector = svm.svc(kernel='linear', C=0.5)
-vector.fit(X_train, y_train)
-vector_ypred = vector.predict(X_test)
-vector_proba = vector.predict_proba(X_test)[:,1]
-fpr_svm, tpr_svm, _ = roc_curve(y_test, vector_proba)
-svm_auc = auc(fpr_svm, tpr_svm)
-svm_f1 = f1_score(y_test, vector_ypred)
+#vector = svm.SVC(kernel='linear', C=0.5)
+#vector.fit(X_train, y_train)
+#vector_ypred = vector.predict(X_test)
+#vector_proba = vector.predict_proba(X_test)[:,1]
+#fpr_svm, tpr_svm, _ = roc_curve(y_test, vector_proba)
+#svm_auc = auc(fpr_svm, tpr_svm)
+#svm_f1 = f1_score(y_test, vector_ypred)
 
 
 # Decision Tree
@@ -68,8 +68,6 @@ print('F1 SCORES',
 '\n',
 'KNN:',knn_f1,
 '\n',
-'SVM:',svm_f1,
-'\n',
 'TREE:',tree_f1,
 '\n',
 'FOREST:',forest_f1,
@@ -81,8 +79,6 @@ print('AUC SCORES',
 '\n',
 'KNN:',knn_auc,
 '\n',
-'SVM:',svm_auc,
-'\n',
 'TREE:',tree_auc,
 '\n',
 'FOREST:',forest_auc,
@@ -92,7 +88,7 @@ print('AUC SCORES',
 
 pylab.figure(figsize=(10,10))
 pylab.plot(fpr_knn, tpr_knn, label='knn')
-pylab.plot(fpr_svm, tpr_svm, label='svm-lin')
+#pylab.plot(fpr_svm, tpr_svm, label='svm-lin')
 pylab.plot(fpr_tree, tpr_tree, label='decision tree')
 pylab.plot(fpr_rf, tpr_rf, label='random forest')
 pylab.plot(fpr_gb, tpr_gb, label='random forest')
